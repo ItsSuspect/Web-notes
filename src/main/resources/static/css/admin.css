@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html {overflow-x: hidden;}
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?odczg7');
+    src:  url('../fonts/icomoon.eot?odczg7#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?odczg7') format('truetype'),
+    url('../fonts/icomoon.woff?odczg7') format('woff'),
+    url('../fonts/icomoon.svg?odczg7#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #2c3e50;
+    align-items: center;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#logo {
+    display: block;
+    margin: 20px;
+    font-size: 1.5em;
+}
+
+nav {
+    display: flex;
+}
+
+nav a {
+    height: 42px;
+    width: 42px;
+    display: block;
+    position: relative;
+    margin: 20px 10px;
+}
+
+.settings:before, .account:before {
+    font-family: 'icomoon';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    line-height: 1em;
+    color: #ffffff;
+}
+
+.settings:before {
+    content: "\e907";
+}
+
+.account:before {
+    content: "\e908";
+}
+
+table {
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}

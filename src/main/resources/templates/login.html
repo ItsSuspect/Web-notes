@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Описание сайта">
+        <meta name="keywords" content="Ключевые слова">
+        <meta name="language" content="RU, EN">
+        <meta name="author" content="Сидоров Сергей, sergey.4181.s@yandex.ru">
+
+        <title>Авторизация - Peely.so</title>
+        <link rel="icon" sizes="192x192" th:href="@{/images/peely.png}">
+        <link rel="stylesheet" th:href="@{/css/login.css}">
+    </head>
+    <body>
+        <header>
+            <h1><a id="logo" href = "/">Peely.so</a></h1>
+            <nav>
+                <a class="settings" href = ""></a>
+                <a class="account" href = "/login"></a>
+            </nav>
+        </header>
+        <main>
+            <form sec:authorize="isAnonymous()" method="POST" action="/login">
+                <h1>Авторизация</h1>
+                <input type="text" name="username" placeholder="Логин"/>
+                <br>
+                <input type="password" name="password" placeholder="Пароль"/>
+                <br>
+                <input type="submit" value="Войти">
+                <br>
+                <a id = "link" href="/registration">Регистрация</a>
+            </form>
+            <div th:if="${param.error}" class="error-message">Неправильный логин или пароль</div>
+            <div sec:authorize="isAuthenticated()" class="error-message">Вы уже авторизованы</div>
+        </main>
+    </body>
+</html>

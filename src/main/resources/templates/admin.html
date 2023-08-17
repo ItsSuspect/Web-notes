@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Описание сайта">
+    <meta name="keywords" content="Ключевые слова">
+    <meta name="language" content="RU, EN">
+    <meta name="author" content="Сидоров Сергей, sergey.4181.s@yandex.ru">
+
+    <title>Панель администрации - Peely.so</title>
+    <link rel="icon" sizes="192x192" th:href="@{/images/peely.png}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+<header>
+    <h1><a id="logo" href = "/">Peely.so</a></h1>
+    <nav>
+        <a class="settings" href = ""></a>
+        <a class="account" href = "/account"></a>
+    </nav>
+</header>
+<main>
+    <table>
+        <thead>
+        <th>ID</th>
+        <th>UserName</th>
+        <th>Password</th>
+        <th>Roles</th>
+        </thead>
+            <tr th:each="users : ${allUsers}">
+                <td th:text="${users.id}"></td>
+                <td th:text="${users.username}"></td>
+                <td th:text="${users.password}"></td>
+                <td th:each="roles : ${users.roles}" th:text="${roles.name}"></td>
+                <td>
+                    <form action="/admin" method="post">
+                        <input type="hidden" name="userId" th:value="${users.id}"/>
+                        <input type="hidden" name="action" value="delete"/>
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+    </table>
+</main>
+</body>
+</html>

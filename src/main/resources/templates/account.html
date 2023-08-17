@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Описание сайта">
+    <meta name="keywords" content="Ключевые слова">
+    <meta name="language" content="RU, EN">
+    <meta name="author" content="Сидоров Сергей, sergey.4181.s@yandex.ru">
+
+    <title>Аккаунт - Peely.so</title>
+    <link rel="icon" sizes="192x192" th:href="@{/images/peely.png}">
+    <link rel="stylesheet" th:href="@{/css/account.css}">
+</head>
+<body>
+<header>
+    <h1><a id="logo" href = "/">Peely.so</a></h1>
+    <nav>
+        <a class="settings" href = ""></a>
+        <a class="account" href = "javascript:void(0)"></a>
+    </nav>
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <a href="/account">Профиль</a>
+            <a href="/logout">Выйти</a>
+        </div>
+    </div>
+</header>
+<main>
+    <div id="profileFormContainer">
+        <h2>Мой профиль</h2>
+        <form id="profileConfirmForm" class="profile-form" method="post" action="changeProfile">
+            <input type="hidden" name="id" th:value="${currentUser.id}">
+            <input type="hidden" name="username" th:value="${currentUser.username}">
+            <input type="hidden" name="password" th:value="${currentUser.password}">
+
+            <label for="username">Логин:</label>
+            <input id="username" type="text" name="username" th:value="${currentUser.username}" disabled>
+
+            <label for="email">Почта:</label>
+            <input id="email" type="email" name="email" th:value="${currentUser?.email}" autocomplete="off">
+
+            <label for="name">Имя:</label>
+            <input id="name" type="text" name="name" th:value="${currentUser?.name}" autocomplete="off">
+
+            <label for="surname">Фамилия:</label>
+            <input id="surname" type="text" name="surname" th:value="${currentUser?.surname}" autocomplete="off">
+
+            <label for="date">Дата рождения:</label>
+            <input id="date" type="date" name="dateBirthday" th:value="${currentUser?.dateBirthday}" autocomplete="off" min="1900-01-01" max="2023-01-01">
+
+            <button type="submit">Сохранить данные</button>
+
+            <button type="button" id="showPasswordFormButton">Изменить пароль</button>
+        </form>
+    </div>
+    <div id="passwordFormContainer">
+        <h2>Изменение пароля</h2>
+        <form id="passwordConfirmForm" class="profile-form" method="post" action="changePassword">
+            <input type="hidden" name="id" th:value="${currentUser.id}">
+            <input type="hidden" name="username" th:value="${currentUser.username}">
+            <input type="hidden" name="password" th:value="${currentUser.password}">
+            <input type="hidden" name="email" th:value="${currentUser?.email}">
+            <input type="hidden" name="name" th:value="${currentUser?.name}">
+            <input type="hidden" name="surname" th:value="${currentUser?.surname}">
+            <input type="hidden" name="dateBirthday" th:value="${currentUser?.dateBirthday}">
+            <label for="currentPassword">Текущий пароль:</label>
+            <input id="currentPassword" type="password" name="currentPassword">
+
+            <label for="newPassword">Новый пароль:</label>
+            <input id="newPassword" type="password" name="newPassword">
+
+            <label for="confirmPassword">Подтвердите новый пароль:</label>
+            <input id="confirmPassword" type="password" name="confirmPassword">
+
+            <button type="submit">Подтвердить</button>
+            <button type="button" id="showProfileFormButton">Отменить</button>
+        </form>
+    </div>
+    <div id="error" th:text="*{error}"></div>
+    <div id="success" th:text="*{success}"></div>
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script th:src="@{/js/account.js}"></script>
+</body>
+</html>

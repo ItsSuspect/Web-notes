@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Описание сайта">
+        <meta name="keywords" content="Ключевые слова">
+        <meta name="language" content="RU, EN">
+        <meta name="author" content="Сидоров Сергей, sergey.4181.s@yandex.ru">
+
+        <title>Главная страница - Peely.so</title>
+        <link rel="icon" th:href="@{/images/peely.png}">
+        <link rel="stylesheet" th:href="@{/css/index.css}">
+    </head>
+    <body>
+        <header>
+            <h1><a id="logo" href = "/">Peely.so</a></h1>
+
+            <nav sec:authorize="isAuthenticated()">
+                <a class="settings" href=""></a>
+                <a class="account" href="javascript:void(0)"></a>
+            </nav>
+
+            <nav sec:authorize="isAnonymous()">
+                <a class="settings" href =""></a>
+                <a class="account" href ="/login"></a>
+            </nav>
+
+            <div id="accountModal" class="modal">
+                <div class="modal-content">
+                    <a href="/account">Профиль</a>
+                    <a href="/logout">Выйти</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div id="base">
+                <div class="weekdays">
+                    <div>
+                        <p class="date">Понедельник</p>
+                    </div>
+                    <form class="forms" method="POST" autocomplete="off">
+                        <input type="hidden" name="id" th:value="${noteForm?.get(0).id}">
+                        <input type="hidden" name="username" th:value="${noteForm?.get(0).username}">
+                        <input type="hidden" name="date" th:value="${noteForm?.get(0).date}">
+                        <input id="0" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field0}"> <br>
+                        <input id="1" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field1}"> <br>
+                        <input id="2" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field2}"> <br>
+                        <input id="3" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field3}"> <br>
+                        <input id="4" class="inputs" type="text" autocomplete="none" name="field4" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field4}"> <br>
+                        <input id="5" class="inputs" type="text" autocomplete="none" name="field5" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field5}"> <br>
+                        <input id="6" class="inputs" type="text" autocomplete="none" name="field6" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field6}"> <br>
+                        <input id="7" class="inputs" type="text" autocomplete="none" name="field7" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field7}"> <br>
+                        <input id="8" class="inputs" type="text" autocomplete="none" name="field8" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field8}"> <br>
+                        <input id="9" class="inputs" type="text" autocomplete="none" name="field9" onfocus="fieldsMonday(id)" th:value="${noteForm?.get(0).field9}"> <br>
+                    </form>
+                </div>
+                <div class="weekdays">
+                    <div>
+                        <p class="date">Вторник</p>
+                    </div>
+                    <form class="forms" method="POST" autocomplete="off">
+                        <input type="hidden" name="id" th:value="${noteForm?.get(1).id}">
+                        <input type="hidden" name="username" th:value="${noteForm?.get(1).username}">
+                        <input type="hidden" name="date" th:value="${noteForm?.get(1).date}">
+                        <input id="10" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field0}"> <br>
+                        <input id="11" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field1}"> <br>
+                        <input id="12" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field2}"> <br>
+                        <input id="13" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field3}"> <br>
+                        <input id="14" class="inputs" type="text" autocomplete="none" name="field4" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field4}"> <br>
+                        <input id="15" class="inputs" type="text" autocomplete="none" name="field5" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field5}"> <br>
+                        <input id="16" class="inputs" type="text" autocomplete="none" name="field6" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field6}"> <br>
+                        <input id="17" class="inputs" type="text" autocomplete="none" name="field7" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field7}"> <br>
+                        <input id="18" class="inputs" type="text" autocomplete="none" name="field8" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field8}"> <br>
+                        <input id="19" class="inputs" type="text" autocomplete="none" name="field9" onfocus="fieldsTuesday(id)" th:value="${noteForm?.get(1).field9}"> <br>
+                    </form>
+                </div>
+                <div class="weekdays">
+                    <div>
+                        <p class="date">Среда</p>
+                    </div>
+                    <form class="forms" method="POST" autocomplete="off">
+                        <input type="hidden" name="id" th:value="${noteForm?.get(2).id}">
+                        <input type="hidden" name="username" th:value="${noteForm?.get(2).username}">
+                        <input type="hidden" name="date" th:value="${noteForm?.get(2).date}">
+                        <input id="20" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field0}"> <br>
+                        <input id="21" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field1}"> <br>
+                        <input id="22" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field2}"> <br>
+                        <input id="23" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field3}"> <br>
+                        <input id="24" class="inputs" type="text" autocomplete="none" name="field4" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field4}"> <br>
+                        <input id="25" class="inputs" type="text" autocomplete="none" name="field5" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field5}"> <br>
+                        <input id="26" class="inputs" type="text" autocomplete="none" name="field6" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field6}"> <br>
+                        <input id="27" class="inputs" type="text" autocomplete="none" name="field7" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field7}"> <br>
+                        <input id="28" class="inputs" type="text" autocomplete="none" name="field8" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field8}"> <br>
+                        <input id="29" class="inputs" type="text" autocomplete="none" name="field9" onfocus="fieldsWednesday(id)" th:value="${noteForm?.get(2).field9}"> <br>
+                    </form>
+                </div>
+                <div class="weekdays">
+                    <div>
+                        <p class="date">Четверг</p>
+                    </div>
+                    <form class="forms" method="POST" autocomplete="off">
+                        <input type="hidden" name="id" th:value="${noteForm?.get(3).id}">
+                        <input type="hidden" name="username" th:value="${noteForm?.get(3).username}">
+                        <input type="hidden" name="date" th:value="${noteForm?.get(3).date}">
+                        <input id="30" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field0}"> <br>
+                        <input id="31" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field1}"> <br>
+                        <input id="32" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field2}"> <br>
+                        <input id="33" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field3}"> <br>
+                        <input id="34" class="inputs" type="text" autocomplete="none" name="field4" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field4}"> <br>
+                        <input id="35" class="inputs" type="text" autocomplete="none" name="field5" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field5}"> <br>
+                        <input id="36" class="inputs" type="text" autocomplete="none" name="field6" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field6}"> <br>
+                        <input id="37" class="inputs" type="text" autocomplete="none" name="field7" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field7}"> <br>
+                        <input id="38" class="inputs" type="text" autocomplete="none" name="field8" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field8}"> <br>
+                        <input id="39" class="inputs" type="text" autocomplete="none" name="field9" onfocus="fieldsThursday(id)" th:value="${noteForm?.get(3).field9}"> <br>
+                    </form>
+                </div>
+                <div class="weekdays">
+                    <div>
+                        <p class="date">Пятница</p>
+                    </div>
+                    <form class="forms" method="POST" autocomplete="off">
+                        <input type="hidden" name="id" th:value="${noteForm?.get(4).id}">
+                        <input type="hidden" name="username" th:value="${noteForm?.get(4).username}">
+                        <input type="hidden" name="date" th:value="${noteForm?.get(4).date}">
+                        <input id="40" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field0}"> <br>
+                        <input id="41" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field1}"> <br>
+                        <input id="42" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field2}"> <br>
+                        <input id="43" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field3}"> <br>
+                        <input id="44" class="inputs" type="text" autocomplete="none" name="field4" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field4}"> <br>
+                        <input id="45" class="inputs" type="text" autocomplete="none" name="field5" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field5}"> <br>
+                        <input id="46" class="inputs" type="text" autocomplete="none" name="field6" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field6}"> <br>
+                        <input id="47" class="inputs" type="text" autocomplete="none" name="field7" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field7}"> <br>
+                        <input id="48" class="inputs" type="text" autocomplete="none" name="field8" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field8}"> <br>
+                        <input id="49" class="inputs" type="text" autocomplete="none" name="field9" onfocus="fieldsFriday(id)" th:value="${noteForm?.get(4).field9}"> <br>
+                    </form>
+                </div>
+                <div class="holidays" id="sunday">
+                    <div>
+                        <p class="date">Суббота</p>
+                    </div>
+                    <form class="forms" method="POST" autocomplete="off">
+                        <input type="hidden" name="id" th:value="${noteForm?.get(5).id}">
+                        <input type="hidden" name="username" th:value="${noteForm?.get(5).username}">
+                        <input type="hidden" name="date" th:value="${noteForm?.get(5).date}">
+                        <input id="50" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsSaturday(id)" th:value="${noteForm?.get(5).field0}"> <br>
+                        <input id="51" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsSaturday(id)" th:value="${noteForm?.get(5).field1}"> <br>
+                        <input id="52" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsSaturday(id)" th:value="${noteForm?.get(5).field2}"> <br>
+                        <input id="53" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsSaturday(id)" th:value="${noteForm?.get(5).field3}"> <br>
+                    </form>
+                </div>
+                <div class="holidays">
+                    <div>
+                        <p class="date">Воскресенье</p>
+                    </div>
+                    <form class="forms" method="POST" autocomplete="off">
+                        <input type="hidden" name="id" th:value="${noteForm?.get(6).id}">
+                        <input type="hidden" name="username" th:value="${noteForm?.get(6).username}">
+                        <input type="hidden" name="date" th:value="${noteForm?.get(6).date}">
+                        <input id="54" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsSunday(id)" th:value="${noteForm?.get(6).field0}"> <br>
+                        <input id="55" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsSunday(id)" th:value="${noteForm?.get(6).field1}"> <br>
+                        <input id="56" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsSunday(id)" th:value="${noteForm?.get(6).field2}"> <br>
+                        <input id="57" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsSunday(id)" th:value="${noteForm?.get(6).field3}"> <br>
+                    </form>
+                </div>
+            </div>
+            <div class="someday">
+                <div id="el_someday">
+                    <p class="date">Когда-нибудь</p>
+                </div>
+                <form class="forms" method="POST" autocomplete="off">
+                    <input type="hidden" name="id" th:value="${noteForm?.get(7).id}">
+                    <input type="hidden" name="username" th:value="${noteForm?.get(7).username}">
+                    <input type="hidden" name="date" th:value="${noteForm?.get(7).date}">
+                    <input id="58" class="inputs" type="text" autocomplete="none" name="field0" placeholder="Напиши сюда" onfocus="fieldsSomeday(id)" th:value="${noteForm?.get(7).field0}"> <br>
+                    <input id="59" class="inputs" type="text" autocomplete="none" name="field1" onfocus="fieldsSomeday(id)" th:value="${noteForm?.get(7).field1}"> <br>
+                    <input id="60" class="inputs" type="text" autocomplete="none" name="field2" onfocus="fieldsSomeday(id)" th:value="${noteForm?.get(7).field2}"> <br>
+                    <input id="61" class="inputs" type="text" autocomplete="none" name="field3" onfocus="fieldsSomeday(id)" th:value="${noteForm?.get(7).field3}"> <br>
+                </form>
+            </div>
+        </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script th:src="@{/js/index.js}"></script>
+    </body>
+</html>
