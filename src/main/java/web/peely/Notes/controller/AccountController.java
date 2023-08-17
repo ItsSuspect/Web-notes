@@ -23,7 +23,7 @@ public class AccountController {
 
     @PostMapping("/changeProfile")
     public String changeProfile(@ModelAttribute("currentUser") User currentUser, Model model) {
-        userService.updateProfile(currentUser);
+        userService.updateProfile(currentUser.getId(), currentUser);
         model.addAttribute("success", "Ваши данные успешно сохранены");
         return "account";
     }
@@ -42,7 +42,7 @@ public class AccountController {
             return "account";
         }
 
-        if (userService.updatePassword(currentUser, currentPassword, newPassword)) {
+        if (userService.updatePassword(currentUser.getId(), currentUser, currentPassword, newPassword)) {
             model.addAttribute("error", "Неверный пароль");
             return "account";
         }

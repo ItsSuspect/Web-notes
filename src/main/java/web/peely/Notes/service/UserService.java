@@ -80,9 +80,12 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public boolean deleteUser(Long userId) {
-        if (userRepository.findById(userId).isPresent()) {
-            noteRepository.deleteByUsername(userRepository.findById(userId).get().getUsername());
-            userRepository.deleteById(userId);
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            noteRepository.deleteByUsername(user.getUsername());
+            userRepository.delete(user);
             return true;
         }
         return false;
@@ -101,17 +104,35 @@ public class UserService implements UserDetailsService {
         noteRepository.save(note);
     }
 
-    public boolean updatePassword(User user, String password, String newPassword) {
-        if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
+    @Transactional
+    public boolean updatePassword(Long userId, User userInChange, String password, String newPassword) {
+        if (!bCryptPasswordEncoder.matches(password, userInChange.getPassword())) {
             return true;
         }
 
-        user.setPassword(bCryptPasswordEncoder.encode(newPassword));
-        userRepository.save(user);
+        Optional<User> userOptional = userRepository.findById(userId);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            user.setPassword(bCryptPasswordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
         return false;
     }
+    @Transactional
+    public void updateProfile(Long userId, User userInChange) {
+        Optional<User> userOptional = userRepository.findById(userId);
 
-    public void updateProfile(User user) {
-        userRepository.save(user);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            user.setEmail(userInChange.getEmail());
+            user.setName(userInChange.getName());
+            user.setSurname(userInChange.getSurname());
+            user.setDateBirthday(userInChange.getDateBirthday());
+
+            userRepository.save(user);
+        }
     }
 }
